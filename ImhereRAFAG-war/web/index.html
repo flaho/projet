@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="css/jquery.mobile-1.0rc2.css" charset="utf-8">
+		<script src="js/jquery-1.7.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/underscore-1.2.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/backbone-0.5.3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/backbone.localStorage.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.mobile-1.0rc2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/application.js" type="text/javascript" charset="utf-8"></script>
+                
+                <script src="js/geolocalisation.js" type="text/javascript" charset="utf-8"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=false&language=fr"></script>
+
+	</head>
+	<body>
+<!--//////////////////////////////////////////////////////home page//////////////////////////////////////////-->
+		<div id="home" data-theme="a" data-role="page">
+
+			<div data-role="header"data-theme="b">
+				<h1>I'm Here</h1>
+			</div>
+
+			<div id="" data-role="content">
+				<form name ="menuform">
+					<div id="actionMyPos">
+						<h4>Generate a Tiny URL and show my position :</h4>
+						
+						<a href="#MyPosition" id = "MyPos" data-theme="c" data-role="button" class="ui-btn-right">My position</a>
+                    </div>
+					
+					<div>
+						<h4>Paste the tiny URL and show friend's position:</h4>
+						<a id="" href="#FriendPosition" data-theme="c" data-role="button" class="ui-btn-right">My friend's position</a>
+					</div>
+					<div>
+					<br/>
+					<br/>
+						<a href="#help" data-theme="c" data-role="button" data-rel="dialog" data-icon="info" data-iconpos="right">Help</a><br/><br/>
+					</div>
+				</form>
+			
+			</div>	
+			
+			<div data-role="footer"data-theme="b">
+				<h2>Copyright I'm Here &copy;</h2> <h5 date-inline="true"> Version 1.0</h5>
+			</div>
+
+		</div>
+<!--//////////////////////////////////////////////////////MyPosition//////////////////////////////////////////-->	
+		<div id="MyPosition" data-role="page" data-theme="a">
+			<div data-role="header"data-theme="b">
+				<h1>My Position & My tinyURL</h1>
+				<a href="#home" data-role="button" data-icon="back" class="ui-btn-left" data-theme="b">Back</a>
+			</div>
+			
+			<div data-role="content">
+				<div date-role="filedcontain">
+					<label for="tinyurluser">This is your position, copy and send it to your friend:</label><br/><br/>
+					<textarea id="tinyurluser" name="tinyurluser" value=""data-theme="b"></textarea>
+				</div>
+				<div style="height:500px;"id ="MyMapPosition">
+					<!-- Affichage de la carte de l'user -->
+				</div>
+            </div>
+		</div>
+<!--//////////////////////////////////////////////////////MyPosition//////////////////////////////////////////-->	
+
+<!--//////////////////////////////////////////////////////FriendPosition//////////////////////////////////////////-->	
+		<div id="aa" data-role="page" data-theme="a">
+			<div data-role="header" data-theme="b">
+				<h1>My friend position</h1>
+				<a href="#home" data-role="button" data-icon="back" class="ui-btn-left" data-theme="b">Back</a>
+			</div>
+			<div id ="HisPosition" data-role="content" style="height:500px;">
+				<!-- Afficher ici la carte et la position de l'ami(e)-->
+				
+			</div>
+            <div id ="actionItinerary" data-role="footer">
+					<h1><a href="#itinerary" id = "CalculIt" data-role="button" data-theme="b" >Itinerary</a></h1>
+			</div>
+			
+		</div>
+<!--//////////////////////////////////////////////////////FriendPosition//////////////////////////////////////////-->	
+<!--//////////////////////////////////////////////////////Help//////////////////////////////////////////-->
+		<div id="help" data-role="page" data-theme="b" >
+			<div data-role="header">
+				<h1>Help</h1>
+			</div>
+			<div data-role="content">
+                <form name="newuserform" method ="post" >
+					<p>
+					Welecome to the I'm here application<br/><br/>
+					This application allows you to communicate your current location to other people. <br/><br/>
+					
+					It is different from other location apps because allows you to adjust your position and hence to provide your receiver with your precise position.<br/><br/> 
+					
+					I'm here is useful when you have to meet someone in large and crowded places. <br/><br/> 
+					
+					I'm here' will help you to give appointment and save time and money avoiding long call to describe your position to your friends. <br/><br/>
+					
+					To use the fonctionnality you need : <br/><br/>
+					1 click on the button my position to show your position and generate a tinyurl <br/><br/>
+							- Copy the tiny URL and sent it to a friend<br/><br/>
+					
+					2 you can also find a position of another person <br/><br/>
+							- Click on the button my friend's position<br/><br/>
+							- Paste the tiny URL in the box and next click on the button GO to find your friend's position<br/><br/>
+							- Click on the button itinerary to join your friend<br/><br/>
+					
+					!   Use your fingers to zoom in, zoom out or move the map to adjust your position : GPS is not always precise, above all when you are inside buildings.
+					</p>	
+					
+					
+					
+				</form>
+			</div>
+		</div>
+<!--//////////////////////////////////////////////////////Help//////////////////////////////////////////-->
+
+<!--//////////////////////////////////////////////////////Boite de dialogue	FriendPosition//////////////////////////////////////////-->	
+		<div id="FriendPosition" data-role="page" data-theme="b" >
+			<div data-role="header">
+				<h1>My friend's position</h1>
+			</div>
+			<div data-role="content">
+               <div>
+					<h4>Paste your friend's position :</h4>	
+					<input name="tinyURL" id="tinyURL" value="" data-position="right"/>
+				</div>	
+				<div>
+					<a href="#aa" data-icon="check" id = "HisPos" data-theme="b" data-role="button" data-iconpos="right">Go</a>					
+				</div>
+					
+					<a href="#home" data-icon="delete" data-theme="b" data-role="button" type ="Cancel" class="ui-btn-right" data-iconpos="right">Cancel</a>
+					
+			
+			</div>
+		</div>
+<!--//////////////////////////////////////////////////////Boite de dialogue	FriendPosition//////////////////////////////////////////-->	
+
+<!--//////////////////////////////////////////////////////Itinerary//////////////////////////////////////////-->
+		<div id="itinerary" data-role="page" data-theme="a">
+			<div data-role="header"data-theme="b">
+				<h1>Itinerary</h1>
+				<a href="#home" data-role="button" data-icon="back" class="ui-btn-left" data-theme="b">Back</a>
+			</div>
+			<div data-role="content">
+				<div style="height:500px;" id="HisMapPosition">
+					<!-- Affichage de la carte de l'user -->
+				</div>
+            </div>
+		</div>
+	
+<!--//////////////////////////////////////////////////////Itinerary//////////////////////////////////////////-->		
+	</body>
+</html>
